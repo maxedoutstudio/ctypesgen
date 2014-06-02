@@ -232,7 +232,7 @@ class WrapperPrinter:
             print >>self.file, "    %s = _libs[%r].%s" % \
                (function.py_name(),function.source_library,function.c_name())
         else:
-            print >>self.file, "for _lib in _libs.itervalues():"
+            print >>self.file, "for _lib in _libs.values():"
             print >>self.file, "    if not hasattr(_lib, %r):" % function.c_name()
             print >>self.file, "        continue"
             print >>self.file, "    %s = _lib.%s" % \
@@ -316,10 +316,10 @@ class WrapperPrinter:
         # We want to contain the failures as much as possible.
         # Hence the try statement.
         self.srcinfo(macro.src)
-        print >>self.file, "try:"
-        print >>self.file, "    %s = %s" % (macro.name,macro.expr.py_string(True))
-        print >>self.file, "except:"
-        print >>self.file, "    pass"
+        #print >>self.file, "try:"
+        print >>self.file, "%s = %s" % (macro.name,macro.expr.py_string(True))
+        #print >>self.file, "except:"
+        #print >>self.file, "    pass"
 
     def print_func_macro(self, macro):
         self.srcinfo(macro.src)
